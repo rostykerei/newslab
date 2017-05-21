@@ -1,0 +1,2 @@
+INSERT INTO publisher (canonical_name, title, url, description, active) VALUES ('test-publisher.com', 'test-publisher', 'http://www.test-publisher.com', 'Test Publisher', TRUE);
+INSERT INTO rss_feed (publisher_id, url, name, link) VALUES (1, 'http://test-feed.com/', 'Test Feed', 'http://test-feed.com/link');
