@@ -2,6 +2,7 @@ package io.newslab.persistence.repository.impl;
 
 import io.newslab.persistence.model.RssFeed;
 import io.newslab.persistence.repository.RssFeedRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class RssFeedRepositoryImpl extends BaseRepositoryImpl<RssFeed, Integer> implements RssFeedRepository {
 
     public RssFeedRepositoryImpl(EntityManager em) {
