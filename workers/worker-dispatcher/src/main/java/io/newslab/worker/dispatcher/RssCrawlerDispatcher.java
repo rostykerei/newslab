@@ -1,5 +1,7 @@
 package io.newslab.worker.dispatcher;
 
+import io.newslab.messaging.rsscrawl.RssCrawlMessagingConfiguration;
+import io.newslab.messaging.rsscrawl.RssCrawlTaskMessage;
 import io.newslab.persistence.model.RssFeed;
 import io.newslab.persistence.repository.RssFeedRepository;
 import org.slf4j.Logger;
@@ -38,7 +40,7 @@ public class RssCrawlerDispatcher {
 
     @Autowired
     public RssCrawlerDispatcher(RssFeedRepository rssFeedRepository,
-                                @Qualifier("testRabbitTemplate") RabbitTemplate rabbitTemplate) {
+                                @Qualifier("rss-crawl-rabbit-template") RabbitTemplate rabbitTemplate) {
         this.rssFeedRepository = rssFeedRepository;
         this.rabbitTemplate = rabbitTemplate;
     }
@@ -59,24 +61,13 @@ public class RssCrawlerDispatcher {
 
         List<RssFeed> feeds = rssFeedRepository.pollFeedsToProcess(getDispatchFeedsNumber());
 
+        logger.debug(feeds.size() + " feeds to be crawled");
+
         for (RssFeed feed : feeds) {
-
+            rabbitTemplate.convertAndSend(
+                    new RssCrawlTaskMessage(feed.getId())
+            );
         }
-
-        if (i < 12) {
-            rabbitTemplate.convertAndSend("newslab.exchange.test", "Hello from RabbitMQ! " + i);
-            i++;
-        }
-
-
-        /*List<Feed> feedList = feedDao.pollFeedsToProcess(feedsToCrawl);
-
-        logger.debug(feedList.size() + " feeds to be crawled");
-
-        for (Feed feed : feedList) {
-            CrawlMessage message = new CrawlMessage(feed.getId());
-            crawlMessaging.convertAndSend(message);
-        }*/
     }
 
     @Scheduled(fixedDelayString = "${newslab.dispatcher.rss-crawler.reset-interval}")
