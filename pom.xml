@@ -18,6 +18,7 @@
         <module>persistence</module>
         <module>workers</module>
         <module>messaging</module>
+        <module>services</module>
     </modules>
 
     <build>

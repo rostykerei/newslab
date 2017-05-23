@@ -11,10 +11,10 @@
 
     <artifactId>workers</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>worker-rss-crawler</module>
         <module>worker-dispatcher</module>
     </modules>
-
 
 </project>
