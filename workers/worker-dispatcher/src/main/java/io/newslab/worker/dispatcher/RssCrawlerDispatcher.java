@@ -1,6 +1,5 @@
 package io.newslab.worker.dispatcher;
 
-import io.newslab.messaging.rsscrawl.RssCrawlMessagingConfiguration;
 import io.newslab.messaging.rsscrawl.RssCrawlTaskMessage;
 import io.newslab.persistence.model.RssFeed;
 import io.newslab.persistence.repository.RssFeedRepository;
