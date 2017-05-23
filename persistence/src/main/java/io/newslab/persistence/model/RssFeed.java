@@ -69,6 +69,10 @@ public class RssFeed {
     @Column(name = "http_last_modified")
     private Date httpLastModified;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
