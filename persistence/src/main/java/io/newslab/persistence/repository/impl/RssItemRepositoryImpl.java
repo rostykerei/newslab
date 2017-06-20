@@ -4,12 +4,14 @@ import io.newslab.persistence.model.Publisher;
 import io.newslab.persistence.model.RssItem;
 import io.newslab.persistence.repository.RssItemRepository;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.Optional;
 
-public class RssItemRepositoryImpl  extends BaseRepositoryImpl<RssItem, Integer> implements RssItemRepository {
+@Repository
+public class RssItemRepositoryImpl extends BaseRepositoryImpl<RssItem, Integer> implements RssItemRepository {
 
     public RssItemRepositoryImpl(EntityManager em) {
         super(RssItem.class, em);
