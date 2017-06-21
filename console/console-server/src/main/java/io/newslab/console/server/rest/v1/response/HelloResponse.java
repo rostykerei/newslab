@@ -1,8 +1,9 @@
 package io.newslab.console.server.rest.v1.response;
 
-/**
- * Created by rosty on 20/06/2017.
- */
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Hello response type model")
 public class HelloResponse {
 
     private int number;
@@ -14,6 +15,7 @@ public class HelloResponse {
         this.name = name;
     }
 
+    @ApiModelProperty(allowableValues = "1,2,3", example = "5")
     public int getNumber() {
         return number;
     }
