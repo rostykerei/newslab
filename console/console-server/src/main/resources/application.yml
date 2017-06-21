@@ -1,11 +1,8 @@
 server:
   port: ${appPort:8000}
 
-endpoints:
-  actuator:
-    enabled: true
-  info:
-    enabled: true
-  cors:
-    allowed-origins: '*'
-    allowed-methods: '*'
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/nl
+    username: osp_admin
+    password: 1234
