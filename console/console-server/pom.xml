@@ -21,6 +21,12 @@
     </build>
 
     <dependencies>
+        <!-- Internal -->
+        <dependency>
+            <groupId>io.newslab</groupId>
+            <artifactId>persistence</artifactId>
+        </dependency>
+
         <!-- Compile -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
