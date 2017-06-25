@@ -582,23 +582,22 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
   position: relative;
 }
 
-/* DATATABLES */
+/* RESTFUL TABLE */
 
-table.dataTable thead .sorting,
-table.dataTable thead .sorting_asc,
-table.dataTable thead .sorting_desc,
-table.dataTable thead .sorting_asc_disabled,
-table.dataTable thead .sorting_desc_disabled {
+table.restfulTable thead tr th {
   background: transparent;
+}
+
+table.restfulTable thead .sorting,
+table.restfulTable thead .sorting_asc,
+table.restfulTable thead .sorting_desc {
   cursor: pointer;
   position: relative;
 }
 
-table.dataTable thead .sorting:after,
-table.dataTable thead .sorting_asc:after,
-table.dataTable thead .sorting_desc:after,
-table.dataTable thead .sorting_asc_disabled:after,
-table.dataTable thead .sorting_desc_disabled:after {
+table.restfulTable thead .sorting:after,
+table.restfulTable thead .sorting_asc:after,
+table.restfulTable thead .sorting_desc:after{
   background: transparent;
   position: absolute;
   bottom: 8px;
@@ -607,11 +606,20 @@ table.dataTable thead .sorting_desc_disabled:after {
   font-family: 'Glyphicons Halflings';
   opacity: 0.5;
 }
-table.dataTable thead .sorting_asc:after {
+
+table.restfulTable thead .sorting:after {
+  opacity: 0.2;
+  content: "\e150";
+}
+table.restfulTable thead .sorting_asc:after {
   content: "\e155";
 }
+table.restfulTable thead .sorting_desc:after {
+  content: "\e156";
+}
 
-.dataTables_wrapper {
+
+/*.dataTables_wrapper {
   padding-bottom: 30px;
 }
 
@@ -621,9 +629,9 @@ table.dataTable thead .sorting_asc:after {
 
 .dataTables_filter label {
   margin-right: 5px;
-}
+}*/
 
-.html5buttons {
+/*.html5buttons {
   float: right;
 }
 
@@ -655,7 +663,7 @@ div.dt-button-info {
   .dataTables_length {
     float: none;
   }
-}
+}*/
 
 /* CIRCLE */
 

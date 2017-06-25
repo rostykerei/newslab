@@ -11,13 +11,21 @@
         </div>
       </div>
 
-      <div class="ibox-content">
+      <div [ngClass]="{'ibox-content': true, 'sk-loading': isLoading}">
+
+        <div class="sk-spinner sk-spinner-wave">
+          <div class="sk-rect1"></div>
+          <div class="sk-rect2"></div>
+          <div class="sk-rect3"></div>
+          <div class="sk-rect4"></div>
+          <div class="sk-rect5"></div>
+        </div>
 
         <div class="table-responsive">
-          <table class="table table-striped table-bordered table-hover dataTable">
+          <table class="table table-striped table-bordered table-hover restfulTable">
             <thead>
             <tr>
-              <th *ngFor="let c of columnDefinitions" class="sorting_asc">{{c.title || c.name}}</th>
+              <th *ngFor="let h of headers" class="{{h.css}}">{{h.title}}</th>
             </tr>
             </thead>
 
@@ -152,7 +160,7 @@
             </tbody>
             <tfoot>
             <tr>
-              <th *ngFor="let c of columnDefinitions">{{c.title || c.name}}</th>
+              <th *ngFor="let h of headers">{{h.title}}</th>
             </tr>
             </tfoot>
           </table>

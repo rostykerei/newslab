@@ -8,11 +8,11 @@ import {ColumnDefinition} from "../../components/restful-table/column-definition
 export class PublishersComponent {
 
   tableColumns: ColumnDefinition[] = [
-    { name: 'renderEngine', title: 'Rendering engile' },
-    { name: 'browser', title: 'Browser' },
-    { name: 'platforms', title: 'Platform(s)' },
-    { name: 'engineVersion'},
-    { name: 'cssGrade', title: 'CSS grade' }
+    { name: 'renderEngine', title: 'Rendering engile', sortable: true },
+    { name: 'browser', title: 'Browser', sortable: true },
+    { name: 'platforms', title: 'Platform(s)', sortable: true },
+    { name: 'engineVersion', sortable: true},
+    { name: 'actions', title: 'Actions', sortable: false }
   ];
 
 }
