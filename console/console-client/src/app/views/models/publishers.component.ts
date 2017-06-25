@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {ColumnDefinition} from "../../components/restful-table/column-definition";
+import {Column} from "../../components/restful-table/column";
 
 @Component({
   selector: 'nl-publishers-component',
@@ -7,12 +7,12 @@ import {ColumnDefinition} from "../../components/restful-table/column-definition
 })
 export class PublishersComponent {
 
-  tableColumns: ColumnDefinition[] = [
-    { name: 'renderEngine', title: 'Rendering engile', sortable: true },
-    { name: 'browser', title: 'Browser', sortable: true },
-    { name: 'platforms', title: 'Platform(s)', sortable: true },
-    { name: 'engineVersion', sortable: true},
-    { name: 'actions', title: 'Actions', sortable: false }
+  tableColumns: Column[] = [
+    { id: 'renderEngine', title: 'Rendering engile', sortable: true},
+    { id: 'browser', title: 'Browser', sortable: true },
+    { id: 'platforms', title: 'Platform(s)', sortable: true },
+    { id: 'engineVersion', sortable: true},
+    { id: '$actions', title: 'Actions', sortable: false }
   ];
 
 }

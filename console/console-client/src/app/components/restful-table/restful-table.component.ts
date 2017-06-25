@@ -1,32 +1,74 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {ColumnDefinition} from "./column-definition";
+import {TableDataService} from "./table-data.service";
+import {TableData} from "./table-data";
+import {Column} from "./column";
 
 @Component({
   selector: 'nl-restful-table',
+  providers: [TableDataService],
   templateUrl: 'restful-table.template.html'
 })
 export class RestfulTableComponent implements OnInit {
 
+  init: boolean = false;
+  loading: boolean = false;
+
   @Input() title: String;
+  @Input() columns: Column[] = [];
 
-  @Input() columnDefinitions: ColumnDefinition[];
+  rows: string[][] = [];
 
-  isLoading: boolean = false;
+  constructor(private tableDataService: TableDataService) {
 
-  headers: any[] = [];
+  }
 
   ngOnInit(): void {
-    for (let col of this.columnDefinitions) {
-      this.headers.push({
-        'title': col.title || col.name,
-        'css': col.sortable ? 'sorting' : ''
-      });
+    this.loadData();
+  }
+
+  loadData(): void {
+    this.loading = true;
+
+    this.tableDataService.getData().then(
+      data => this.dataLoaded(data)
+    );
+  }
+
+  dataLoaded(data:TableData): void {
+    this.tableData = data;
+    this.init = true;
+    this.loading = false;
+  }
+
+  set tableData(tableData: TableData) {
+    for (let column of this.columns) {
+      column.sortDir = tableData.sortedByColumn == column.id ? tableData.sortingDirection : null;
+    }
+
+    this.rows = [];
+
+    for (let dataRow of tableData.data) {
+      let row: string[] = [];
+      let i = 0;
+
+      for (let column of this.columns) {
+        row[i] = dataRow[column.id];
+        i++;
+      }
+
+      this.rows.push(row);
+    }
+  }
+
+  sort(column: Column): void {
+    if (column.sortable) {
+      this.loadData();
     }
   }
 
   refresh(e: Event): void {
     e.preventDefault();
-    this.isLoading = !this.isLoading;
+    this.loadData();
   }
 
 }
