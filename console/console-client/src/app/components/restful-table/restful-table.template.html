@@ -14,10 +14,10 @@
       <div class="ibox-content">
 
         <div class="table-responsive">
-          <table class="table table-striped table-bordered table-hover dataTables-example">
+          <table class="table table-striped table-bordered table-hover dataTable">
             <thead>
             <tr>
-              <th *ngFor="let c of columnDefinitions">{{c.title || c.name}}</th>
+              <th *ngFor="let c of columnDefinitions" class="sorting_asc">{{c.title || c.name}}</th>
             </tr>
             </thead>
 
@@ -156,6 +156,17 @@
             </tr>
             </tfoot>
           </table>
+
+          <div class="pull-right">
+            <ul class="pagination no-margins">
+              <li class="previous disabled"><a>Previous</a></li>
+              <li class="active"><a>1</a></li>
+              <li><a>2</a></li>
+              <li><a>3</a></li>
+              <li class="next"><a>Next</a></li>
+            </ul>
+          </div>
+
         </div>
 
       </div>
