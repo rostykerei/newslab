@@ -18,6 +18,10 @@ export class RestfulTableComponent implements OnInit {
 
   rows: string[][] = [];
 
+  rowsPerPage: number = 25;
+
+  ROWS_PER_PAGE_MENU: number[] = [10, 25, 50, 100, 200];
+
   constructor(private tableDataService: TableDataService) {
 
   }
@@ -68,6 +72,11 @@ export class RestfulTableComponent implements OnInit {
 
   refresh(e: Event): void {
     e.preventDefault();
+    this.loadData();
+  }
+
+  changeRowsPerPage(n: number): void {
+    this.rowsPerPage = n;
     this.loadData();
   }
 
