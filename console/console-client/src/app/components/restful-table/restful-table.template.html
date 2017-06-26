@@ -76,10 +76,11 @@
         <div class="row">
           <div class="col-lg-4">
             <ul class="pagination no-margins pull-left">
-              <li><a>10</a></li>
-              <li class="active"><a>25</a></li>
-              <li><a>50</a></li>
-              <li><a>100</a></li>
+              <li *ngFor="let v of ROWS_PER_PAGE_MENU"
+                [ngClass]="{active: v == rowsPerPage}"
+                (click)="changeRowsPerPage(v)">
+                <a>{{v}}</a>
+              </li>
             </ul>
           </div>
 
