@@ -618,6 +618,11 @@ table.restfulTable thead .sorting_desc:after {
   content: "\e156";
 }
 
+div.restfulTablePageCount {
+  padding: 5px;
+  text-align: center;
+}
+
 
 /*.dataTables_wrapper {
   padding-bottom: 30px;
