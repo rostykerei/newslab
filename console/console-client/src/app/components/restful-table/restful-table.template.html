@@ -77,24 +77,40 @@
           <div class="col-lg-4">
             <ul class="pagination no-margins pull-left">
               <li *ngFor="let v of ROWS_PER_PAGE_MENU"
-                [ngClass]="{active: v == rowsPerPage}"
-                (click)="changeRowsPerPage(v)">
+                [ngClass]="{active: v == pageSize}"
+                (click)="changePageSize(v)">
                 <a>{{v}}</a>
               </li>
             </ul>
           </div>
 
           <div class="col-lg-4 restfulTablePageCount text-muted">
-            Showing <span>26</span> to <span>50</span> of <span>57</span> entries
+            Showing <span>{{pageNumber * pageSize - pageSize + 1}}</span> to <span>{{(pageNumber * pageSize - pageSize) + rows.length}}</span> of <span>{{totalElements}}</span> {{totalElements == 1 ? 'row' : 'rows'}}
           </div>
 
           <div class="col-lg-4">
             <ul class="pagination no-margins pull-right">
-              <li class="previous disabled"><a>Previous</a></li>
-              <li class="active"><a>1</a></li>
-              <li><a>2</a></li>
-              <li><a>3</a></li>
-              <li class="next"><a>Next</a></li>
+              <li
+                [ngClass]="{disabled: pageNumber == 1}"
+                (click)="changePage(1)"
+              ><a>First</a></li>
+              <li
+                [ngClass]="{disabled: pageNumber == 1}"
+                (click)="changePage(pageNumber - 1)"
+              ><a>Previous</a></li>
+              <li
+              *ngFor="let p of pagination"
+              [ngClass]="{active: p == pageNumber}">
+                <a>{{p}}</a>
+              </li>
+              <li
+                [ngClass]="{disabled: pageNumber == totalPages}"
+                (click)="changePage(pageNumber + 1)"
+              ><a>Next</a></li>
+              <li
+                [ngClass]="{disabled: pageNumber == totalPages}"
+                (click)="changePage(totalPages)"
+              ><a>Last</a></li>
             </ul>
           </div>
 

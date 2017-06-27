@@ -1,13 +1,21 @@
+export enum SortDirection {
+  ASC, DESC
+}
+
+export interface Sort {
+  column: string,
+  direction: 'ASC' | 'DESC'
+}
+
 export interface TableData {
 
-  sortedByColumn: string,
-  sortingDirection: string,
+  pageSize: number,
+  pageNumber: number,
 
-  rowsTotal: number,
+  totalElements: number,
 
-  currentPage: number,
-  rowsPerPage: number,
+  sort: Sort[],
 
-  data: any[]
+  data: Object[]
 
 }
