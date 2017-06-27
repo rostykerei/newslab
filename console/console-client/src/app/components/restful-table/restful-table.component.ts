@@ -15,6 +15,7 @@ export class RestfulTableComponent implements OnInit {
 
   @Input() title: String;
   @Input() columns: Column[] = [];
+  @Input() multisortAllowed?: boolean;
 
   rows: string[][] = [];
 
