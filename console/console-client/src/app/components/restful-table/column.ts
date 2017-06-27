@@ -3,5 +3,5 @@ export interface Column {
   title?: string,
 
   sortable?: boolean,
-  sortDir?: string
+  sortDir?: 'ASC' | 'DESC'
 }
