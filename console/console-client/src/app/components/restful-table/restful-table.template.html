@@ -84,7 +84,7 @@
             </ul>
           </div>
 
-          <div class="col-lg-4 restfulTablePageCount text-muted">
+          <div class="col-lg-4 p-xxs text-muted text-center">
             Showing <span>{{pageNumber * pageSize - pageSize + 1}}</span> to <span>{{(pageNumber * pageSize - pageSize) + rows.length}}</span> of <span>{{totalElements}}</span> {{totalElements == 1 ? 'row' : 'rows'}}
           </div>
 
@@ -93,24 +93,30 @@
               <li
                 [ngClass]="{disabled: pageNumber == 1}"
                 (click)="changePage(1)"
-              ><a>First</a></li>
+                title="First"
+              ><a><i class="fa fa-angle-double-left"></i></a></li>
               <li
                 [ngClass]="{disabled: pageNumber == 1}"
                 (click)="changePage(pageNumber - 1)"
-              ><a>Previous</a></li>
+                title="Previous"
+              ><a><i class="fa fa-angle-left"></i></a></li>
               <li
               *ngFor="let p of pagination"
-              [ngClass]="{active: p == pageNumber}">
+              [ngClass]="{active: p == pageNumber}"
+              (click)="changePage(p)"
+              [title]="'Page ' + p">
                 <a>{{p}}</a>
               </li>
               <li
                 [ngClass]="{disabled: pageNumber == totalPages}"
                 (click)="changePage(pageNumber + 1)"
-              ><a>Next</a></li>
+                title="Next"
+              ><a><i class="fa fa-angle-right"></i></a></li>
               <li
                 [ngClass]="{disabled: pageNumber == totalPages}"
                 (click)="changePage(totalPages)"
-              ><a>Last</a></li>
+                title="Last"
+              ><a><i class="fa fa-angle-double-right"></i></a></li>
             </ul>
           </div>
 

@@ -83,7 +83,12 @@ export class RestfulTableComponent implements OnInit {
 
     let paginationFrom = tableData.pageNumber < 3 ? 1 : tableData.pageNumber - 2;
     let paginationTo = paginationFrom + 4;
-    paginationTo = paginationTo > this.totalPages ? this.totalPages : paginationTo;
+
+    if (paginationTo > this.totalPages) {
+      paginationTo = this.totalPages;
+      console.log(paginationFrom + " - " + paginationTo);
+      paginationFrom = paginationTo < 5 ? 1 : paginationTo - 4;
+    }
 
     this.pagination = [];
     for (let p = paginationFrom; p <= paginationTo; p++) {
