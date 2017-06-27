@@ -7,8 +7,8 @@ export class TableDataService {
   getData(): Promise<TableData>  {
     let td: TableData = {
       "pageSize":10,
-      "pageNumber":50,
-      "totalElements":501,
+      "pageNumber": 2,
+      "totalElements":22,
       "sort":[
         {
           "column":"title",
