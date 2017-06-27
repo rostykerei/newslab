@@ -19,7 +19,12 @@ export class RestfulTableComponent implements OnInit {
 
   rows: string[][] = [];
 
-  rowsPerPage: number = 25;
+  pageNumber: number = 0;
+  pageSize: number = 25;
+  totalPages: number = 0;
+  totalElements: number = 0;
+
+  pagination: number[] = [];
 
   ROWS_PER_PAGE_MENU: number[] = [10, 25, 50, 100, 200];
 
@@ -47,7 +52,14 @@ export class RestfulTableComponent implements OnInit {
 
   set tableData(tableData: TableData) {
     for (let column of this.columns) {
-      column.sortDir = tableData.sortedByColumn == column.id ? tableData.sortingDirection : null;
+      column.sortDir = null;
+
+      for (let sort of tableData.sort) {
+        if (sort.column == column.id) {
+          column.sortDir = sort.direction;
+          break;
+        }
+      }
     }
 
     this.rows = [];
@@ -63,6 +75,25 @@ export class RestfulTableComponent implements OnInit {
 
       this.rows.push(row);
     }
+
+    this.pageNumber = tableData.pageNumber;
+    this.pageSize = tableData.pageSize;
+    this.totalElements = tableData.totalElements;
+    this.totalPages = tableData.pageSize > 0 ? Math.ceil(tableData.totalElements / tableData.pageSize) : 0;
+
+    let paginationFrom = tableData.pageNumber < 3 ? 1 : tableData.pageNumber - 2;
+    let paginationTo = paginationFrom + 4;
+    paginationTo = paginationTo > this.totalPages ? this.totalPages : paginationTo;
+
+    this.pagination = [];
+    for (let p = paginationFrom; p <= paginationTo; p++) {
+      this.pagination.push(p);
+    }
+
+    console.log(paginationFrom);
+    console.log(paginationTo);
+    console.log(this.pagination);
+
   }
 
   sort(column: Column): void {
@@ -76,8 +107,13 @@ export class RestfulTableComponent implements OnInit {
     this.loadData();
   }
 
-  changeRowsPerPage(n: number): void {
-    this.rowsPerPage = n;
+  changePage(page: number): void {
+    console.log('change page: ' + page);
+    this.loadData();
+  }
+
+  changePageSize(n: number): void {
+  //  this.pageSize = n;
     this.loadData();
   }
 

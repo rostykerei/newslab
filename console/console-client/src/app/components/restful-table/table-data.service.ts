@@ -6,41 +6,99 @@ export class TableDataService {
 
   getData(): Promise<TableData>  {
     let td: TableData = {
-      sortedByColumn: 'browser',
-      sortingDirection: 'DESC',
-      rowsTotal: 100,
-      currentPage: 1,
-      rowsPerPage: 25,
-      data: [
+      "pageSize":10,
+      "pageNumber":50,
+      "totalElements":501,
+      "sort":[
         {
-          renderEngine: 'Trident',
-          browser: 'Internet Explorer',
-          platforms: 'Windows',
-          engineVersion: '5.2'
+          "column":"title",
+          "direction": "DESC"
         },
         {
-          renderEngine: 'Gecko',
-          browser: 'Firefox 3.0',
-          platforms: 'KDE 3.1',
-          engineVersion: '4.7'
+          "column":"id",
+          "direction": "ASC"
+        }
+      ],
+      "data":[
+        {
+          "id":461,
+          "canonicalName":"test-publisher-460.com",
+          "title":"test-publisher-460",
+          "url":"http://www.test-publisher-460.com",
+          "description":"Test Publisher 460",
+          "active":true
         },
         {
-          renderEngine: 'Presto',
-          browser: 'Netscape Navigator 69',
-          platforms: 'Gnome',
-          engineVersion: '3.8'
+          "id":460,
+          "canonicalName":"test-publisher-459.com",
+          "title":"test-publisher-459",
+          "url":"http://www.test-publisher-459.com",
+          "description":"Test Publisher 459",
+          "active":true
         },
         {
-          renderEngine: 'KHTML',
-          browser: 'Mozilla 1.8r',
-          platforms: '	Embedded devices',
-          engineVersion: '1.1'
+          "id":459,
+          "canonicalName":"test-publisher-458.com",
+          "title":"test-publisher-458",
+          "url":"http://www.test-publisher-458.com",
+          "description":"Test Publisher 458",
+          "active":true
         },
         {
-          renderEngine: 'Misc',
-          browser: 'NetFront 3.1',
-          platforms: 'OSX.2+',
-          engineVersion: '7.8'
+          "id":458,
+          "canonicalName":"test-publisher-457.com",
+          "title":"test-publisher-457",
+          "url":"http://www.test-publisher-457.com",
+          "description":"Test Publisher 457",
+          "active":true
+        },
+        {
+          "id":457,
+          "canonicalName":"test-publisher-456.com",
+          "title":"test-publisher-456",
+          "url":"http://www.test-publisher-456.com",
+          "description":"Test Publisher 456",
+          "active":true
+        },
+        {
+          "id":456,
+          "canonicalName":"test-publisher-455.com",
+          "title":"test-publisher-455",
+          "url":"http://www.test-publisher-455.com",
+          "description":"Test Publisher 455",
+          "active":true
+        },
+        {
+          "id":455,
+          "canonicalName":"test-publisher-454.com",
+          "title":"test-publisher-454",
+          "url":"http://www.test-publisher-454.com",
+          "description":"Test Publisher 454",
+          "active":true
+        },
+        {
+          "id":454,
+          "canonicalName":"test-publisher-453.com",
+          "title":"test-publisher-453",
+          "url":"http://www.test-publisher-453.com",
+          "description":"Test Publisher 453",
+          "active":true
+        },
+        {
+          "id":453,
+          "canonicalName":"test-publisher-452.com",
+          "title":"test-publisher-452",
+          "url":"http://www.test-publisher-452.com",
+          "description":"Test Publisher 452",
+          "active":true
+        },
+        {
+          "id":452,
+          "canonicalName":"test-publisher-451.com",
+          "title":"test-publisher-451",
+          "url":"http://www.test-publisher-451.com",
+          "description":"Test Publisher 451",
+          "active":true
         }
       ]
     };
