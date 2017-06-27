@@ -5,6 +5,7 @@ import io.newslab.console.server.rest.v1.restfultable.RestfulTableRequest;
 import io.newslab.persistence.model.Publisher;
 import io.newslab.persistence.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ public class PublisherController {
     @Autowired
     private PublisherRepository publisherRepository;
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET)
     public RestfulTablePage<Publisher> list(RestfulTableRequest request) {
         return translate(

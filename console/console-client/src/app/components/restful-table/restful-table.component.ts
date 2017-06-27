@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {TableDataService} from "./table-data.service";
-import {TableData} from "./table-data";
+import {Sort, TableData} from "./table-data";
 import {Column} from "./column";
 
 @Component({
@@ -19,8 +19,9 @@ export class RestfulTableComponent implements OnInit {
 
   rows: string[][] = [];
 
-  pageNumber: number = 0;
+  pageNumber: number = 1;
   pageSize: number = 25;
+
   totalPages: number = 0;
   totalElements: number = 0;
 
@@ -36,10 +37,10 @@ export class RestfulTableComponent implements OnInit {
     this.loadData();
   }
 
-  loadData(): void {
+  loadData(pageNumber: number = this.pageNumber, pageSize: number = this.pageSize, sort: Sort[] = []): void {
     this.loading = true;
 
-    this.tableDataService.getData().then(
+    this.tableDataService.getData(pageNumber, pageSize, sort).then(
       data => this.dataLoaded(data)
     );
   }
@@ -103,7 +104,13 @@ export class RestfulTableComponent implements OnInit {
 
   sort(column: Column): void {
     if (column.sortable) {
-      this.loadData();
+      this.loadData(1, this.pageSize, [
+        {
+          column: column.id,
+          direction: column.sortDir == 'ASC' ? 'DESC' : 'ASC'
+        }
+        ]
+      );
     }
   }
 
@@ -113,13 +120,11 @@ export class RestfulTableComponent implements OnInit {
   }
 
   changePage(page: number): void {
-    console.log('change page: ' + page);
-    this.loadData();
+    this.loadData(page);
   }
 
   changePageSize(n: number): void {
-  //  this.pageSize = n;
-    this.loadData();
+    this.loadData(1, n);
   }
 
 }
