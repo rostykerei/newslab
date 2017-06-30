@@ -5,7 +5,7 @@
       <div class="ibox-title">
         <h5>{{title}}</h5>
         <div class="ibox-tools">
-          <a title="Refresh" (click)="refresh($event)">
+          <a title="Refresh" (click)="refreshData($event)">
             <i class="fa fa-refresh"></i>
           </a>
         </div>
@@ -61,7 +61,12 @@
               </td>
             </tr>
             <tr *ngFor="let row of rows">
-              <td *ngFor="let cell of row">{{cell}}</td>
+              <td *ngFor="let col of columns">
+                <cell
+                  [row]="row"
+                  [column]="col"
+                ></cell>
+              </td>
             </tr>
             </tbody>
 

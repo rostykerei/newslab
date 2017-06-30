@@ -1,4 +1,4 @@
-export interface Sort {
+export interface RestfulTableSort {
   column: string,
   direction: 'ASC' | 'DESC'
 }
