@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
-import {Sort, TableData} from "./table-data";
+import {TableData} from "./table-data";
 import {Http} from "@angular/http";
 import "rxjs/add/operator/toPromise";
+import {Sort} from "./sort";
 
 @Injectable()
 export class TableDataService {
@@ -21,18 +22,7 @@ export class TableDataService {
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as TableData)
-      .catch(this.handleError);
-
-/*    return new Promise(resolve => {
-      // Simulate server latency with 1 second delay
-      setTimeout(() => resolve(td), 1000);
-    });*/
-
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+      .catch(error => Promise.reject(error));
   }
 
 }

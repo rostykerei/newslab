@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {TableDataService} from "./table-data.service";
-import {Sort, TableData} from "./table-data";
+import {TableData} from "./table-data";
 import {Column} from "./column";
+import {Sort} from "./sort";
 
 @Component({
   selector: 'nl-restful-table',
@@ -15,7 +16,9 @@ export class RestfulTableComponent implements OnInit {
 
   @Input() title: String;
   @Input() columns: Column[] = [];
-  @Input() multisortAllowed?: boolean;
+
+  @Input() defaultPageSize?: 10 |25 | 50 | 100 | 200;
+  @Input() defaultSort?: Sort[];
 
   rows: string[][] = [];
 
@@ -24,6 +27,8 @@ export class RestfulTableComponent implements OnInit {
 
   totalPages: number = 0;
   totalElements: number = 0;
+
+  sort: Sort[] = [];
 
   pagination: number[] = [];
 
@@ -34,10 +39,10 @@ export class RestfulTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadData();
+    this.loadData(1, this.defaultPageSize || this.pageSize, this.defaultSort || this.sort);
   }
 
-  loadData(pageNumber: number = this.pageNumber, pageSize: number = this.pageSize, sort: Sort[] = []): void {
+  loadData(pageNumber: number = this.pageNumber, pageSize: number = this.pageSize, sort: Sort[] = this.sort): void {
     this.loading = true;
 
     this.tableDataService.getData(pageNumber, pageSize, sort).then(
@@ -52,17 +57,6 @@ export class RestfulTableComponent implements OnInit {
   }
 
   set tableData(tableData: TableData) {
-    for (let column of this.columns) {
-      column.sortDir = null;
-
-      for (let sort of tableData.sort) {
-        if (sort.column == column.id) {
-          column.sortDir = sort.direction;
-          break;
-        }
-      }
-    }
-
     this.rows = [];
 
     for (let dataRow of tableData.data) {
@@ -77,6 +71,7 @@ export class RestfulTableComponent implements OnInit {
       this.rows.push(row);
     }
 
+    this.sort = tableData.sort;
     this.pageNumber = tableData.pageNumber;
     this.pageSize = tableData.pageSize;
     this.totalElements = tableData.totalElements;
@@ -87,7 +82,6 @@ export class RestfulTableComponent implements OnInit {
 
     if (paginationTo > this.totalPages) {
       paginationTo = this.totalPages;
-      console.log(paginationFrom + " - " + paginationTo);
       paginationFrom = paginationTo < 5 ? 1 : paginationTo - 4;
     }
 
@@ -95,22 +89,26 @@ export class RestfulTableComponent implements OnInit {
     for (let p = paginationFrom; p <= paginationTo; p++) {
       this.pagination.push(p);
     }
-
-    console.log(paginationFrom);
-    console.log(paginationTo);
-    console.log(this.pagination);
-
   }
 
-  sort(column: Column): void {
+  getColumnSort(column: Column): 'ASC' | 'DESC' | 'NONE' {
+    for (let sort of this.sort){
+      if (sort.column == column.id) {
+        return sort.direction;
+      }
+    }
+
+    return 'NONE';
+  }
+
+  changeSort(column: Column): void {
     if (column.sortable) {
       this.loadData(1, this.pageSize, [
         {
           column: column.id,
-          direction: column.sortDir == 'ASC' ? 'DESC' : 'ASC'
+          direction: this.getColumnSort(column) == 'ASC' ? 'DESC' : 'ASC'
         }
-        ]
-      );
+      ]);
     }
   }
 
