@@ -17,7 +17,7 @@ export class RestfulTableComponent implements OnInit {
   @Input() title: String;
   @Input() columns: RestfulTableColumn[] = [];
 
-  @Input() defaultPageSize?: 10 |25 | 50 | 100 | 200;
+  @Input() defaultPageSize?: 10 | 25 | 50 | 100 | 200;
   @Input() defaultSort?: RestfulTableSort[];
 
   rows: Object[] = [];
@@ -50,7 +50,7 @@ export class RestfulTableComponent implements OnInit {
     );
   }
 
-  dataLoaded(data:RestfulTableData): void {
+  dataLoaded(data: RestfulTableData): void {
     this.tableData = data;
     this.init = true;
     this.loading = false;
@@ -80,7 +80,7 @@ export class RestfulTableComponent implements OnInit {
   }
 
   getColumnSort(column: RestfulTableColumn): 'ASC' | 'DESC' | 'NONE' {
-    for (let sort of this.sort){
+    for (let sort of this.sort) {
       if (sort.column == column.id) {
         return sort.direction;
       }

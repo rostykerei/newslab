@@ -6,7 +6,7 @@ import {RestfulTableCellRenderer} from "./restful-table-cell-renderer.type";
 
 @Component({
   selector: 'cell',
-  template: `<ng-template cell-host></ng-template>`
+  template: '<ng-template cell-host></ng-template>'
 })
 export class RestfulTableCellComponent implements AfterViewInit {
 
@@ -15,7 +15,8 @@ export class RestfulTableCellComponent implements AfterViewInit {
 
   @ViewChild(RestfulTableCellDirective) cellHost: RestfulTableCellDirective;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) {
+  }
 
   ngAfterViewInit(): void {
     let componentRef = this.cellHost.viewContainerRef.createComponent(

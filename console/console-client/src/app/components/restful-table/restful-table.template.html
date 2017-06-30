@@ -82,15 +82,16 @@
           <div class="col-lg-4">
             <ul class="pagination no-margins pull-left">
               <li *ngFor="let v of ROWS_PER_PAGE_MENU"
-                [ngClass]="{active: v == pageSize}"
-                (click)="changePageSize(v)">
+                  [ngClass]="{active: v == pageSize}"
+                  (click)="changePageSize(v)">
                 <a>{{v}}</a>
               </li>
             </ul>
           </div>
 
           <div class="col-lg-4 p-xxs text-muted text-center">
-            Showing {{pageNumber * pageSize - pageSize + 1}} to {{(pageNumber * pageSize - pageSize) + rows.length}} of {{totalElements}} {{totalElements == 1 ? 'row' : 'rows'}}
+            Showing {{pageNumber * pageSize - pageSize + 1}} to {{(pageNumber * pageSize - pageSize) + rows.length}} of
+            {{totalElements}} {{totalElements == 1 ? 'row' : 'rows'}}
           </div>
 
           <div class="col-lg-4">
@@ -106,10 +107,10 @@
                 title="Previous"
               ><a><i class="fa fa-angle-left"></i></a></li>
               <li
-              *ngFor="let p of pagination"
-              [ngClass]="{active: p == pageNumber}"
-              (click)="changePage(p)"
-              [title]="'Page ' + p">
+                *ngFor="let p of pagination"
+                [ngClass]="{active: p == pageNumber}"
+                (click)="changePage(p)"
+                [title]="'Page ' + p">
                 <a>{{p}}</a>
               </li>
               <li

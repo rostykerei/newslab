@@ -4,5 +4,6 @@ import {Directive, ViewContainerRef} from "@angular/core";
   selector: '[cell-host]',
 })
 export class RestfulTableCellDirective {
-  constructor(public viewContainerRef: ViewContainerRef) { }
+  constructor(public viewContainerRef: ViewContainerRef) {
+  }
 }
