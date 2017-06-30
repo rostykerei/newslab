@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
-import {Column} from "../../components/restful-table/column";
-import {Sort} from "../../components/restful-table/sort";
+import {PublishersTableActionsRenderer} from "./publishers-table-actions-renderer.component";
+import {RestfulTableColumn} from "../../components/restful-table/types/restful-table-column.type";
+import {RestfulTableSort} from "../../components/restful-table/types/restful-table-sort.type";
 
 @Component({
   selector: 'nl-publishers-component',
@@ -8,15 +9,15 @@ import {Sort} from "../../components/restful-table/sort";
 })
 export class PublishersComponent {
 
-  tableColumns: Column[] = [
+  tableColumns: RestfulTableColumn[] = [
     { id: 'id', title: 'ID', sortable: true},
     { id: 'canonicalName', title: 'Canonical name', sortable: true },
     { id: 'title', title: 'Title', sortable: true },
     { id: 'url', title: 'URL', sortable: true},
-    { id: '$actions', title: 'Actions', sortable: false }
+    { id: '$actions', title: 'Actions', sortable: false, renderer: PublishersTableActionsRenderer }
   ];
 
-  defaultSort: Sort[] = [
+  defaultSort: RestfulTableSort[] = [
     {
       column: 'id',
       direction: 'ASC'
