@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { TestConfig.class })
 @Transactional @Rollback
-public class RssFeedRepositoryTest {
+public class RssFeedRepositoryIT {
 
     @Autowired
     private RssFeedRepository rssFeedRepository;
