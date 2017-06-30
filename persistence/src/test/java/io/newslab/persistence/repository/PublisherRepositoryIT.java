@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { TestConfig.class })
 @Transactional @Rollback
-public class PublisherRepositoryTest {
+public class PublisherRepositoryIT {
 
     @Autowired
     private PublisherRepository publisherRepository;
