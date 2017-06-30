@@ -1,11 +1,4 @@
-export enum SortDirection {
-  ASC, DESC
-}
-
-export interface Sort {
-  column: string,
-  direction: 'ASC' | 'DESC'
-}
+import {Sort} from "./sort";
 
 export interface TableData {
 
