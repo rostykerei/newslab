@@ -6,10 +6,22 @@ import {RestfulTableCellComponent} from "./cell/restful-table-cell.component";
 import {RestfulTableDefaultCellRenderer} from "./cell/restful-table-default-cell-renderer.component";
 
 @NgModule({
-  declarations: [RestfulTableComponent, RestfulTableCellDirective, RestfulTableCellComponent, RestfulTableDefaultCellRenderer],
-  imports     : [BrowserModule],
-  exports     : [RestfulTableComponent, RestfulTableCellComponent],
-  entryComponents: [RestfulTableDefaultCellRenderer]
+  declarations: [
+    RestfulTableComponent,
+    RestfulTableCellDirective,
+    RestfulTableCellComponent,
+    RestfulTableDefaultCellRenderer
+  ],
+  imports: [
+    BrowserModule
+  ],
+  exports: [
+    RestfulTableComponent,
+    RestfulTableCellComponent
+  ],
+  entryComponents: [
+    RestfulTableDefaultCellRenderer
+  ]
 })
 export class RestfulTableModule {
 

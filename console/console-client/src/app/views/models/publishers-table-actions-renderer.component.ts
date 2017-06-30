@@ -3,7 +3,8 @@ import {RestfulTableColumn} from "../../components/restful-table/types/restful-t
 import {RestfulTableCellRenderer} from "../../components/restful-table/cell/restful-table-cell-renderer.type";
 
 @Component({
-  template: `<a (click)="click()" >action</a>`
+  template: '<a (click)="click()" >action</a>',
+  styles: ['a { font-weight: bold; font-style: italic; }']
 })
 export class PublishersTableActionsRenderer implements RestfulTableCellRenderer {
   @Input() column: RestfulTableColumn;
