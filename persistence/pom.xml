@@ -26,6 +26,7 @@
                 </executions>
                 <configuration>
                     <environmentVariables>
+                        <spring.profiles.active>it</spring.profiles.active>
                         <it-database.port>${it-database.port}</it-database.port>
                     </environmentVariables>
                 </configuration>
