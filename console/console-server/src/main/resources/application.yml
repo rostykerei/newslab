@@ -1,8 +1,8 @@
 server:
-  port: ${appPort:8000}
+  port: 8000
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/nl
-    username: osp_admin
-    password: 1234
+    url: jdbc:postgresql://localhost:35432/newslab-dev
+    username: newslab
+    password: balswen
