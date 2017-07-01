@@ -25,10 +25,16 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <environmentVariables>
-                        <spring.profiles.active>it</spring.profiles.active>
-                        <it-database.port>${it-database.port}</it-database.port>
-                    </environmentVariables>
+                    <systemProperties>
+                        <property>
+                            <name>spring.profiles.active</name>
+                            <value>it</value>
+                        </property>
+                        <property>
+                            <name>it.db.port</name>
+                            <value>${it.db.port}</value>
+                        </property>
+                    </systemProperties>
                 </configuration>
             </plugin>
             <plugin>
@@ -46,10 +52,10 @@
                             <images>
                                 <image>
                                     <name>postgres:latest</name>
-                                    <alias>it-database</alias>
+                                    <alias>integration-test-db</alias>
                                     <run>
                                         <ports>
-                                            <port>it-database.port:5432</port>
+                                            <port>it.db.port:5432</port>
                                         </ports>
                                         <wait>
                                             <log>(?s)database system is ready to accept connections.*database system is ready to accept connections</log>
